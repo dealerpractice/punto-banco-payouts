@@ -1,262 +1,298 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
- <title>Punto Payouts Game</title>
- <link rel="icon" type="image/png" href="favicon.png" />
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- <link rel="stylesheet"
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-     crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
- <link rel="stylesheet"
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-     integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
-     crossorigin="anonymous">
+    <title>PB 19:20 Payouts Game</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <style>
+    body {
+      background-color: #f2e6d9;
+    }
+      .jumbotron {
+        margin: 1%;
+        border-style: solid;
+        border-color: #734d26;
+        color: #392613;
+      }
+      #feedbacktellme, #feedbackfail, #feedbacksuccess {
+        margin: 2%;
+      }
+      .col-2 {
+        padding-left: 1%;
+        padding-right: 1%;
+      }
+      .col-4 {
+        padding-left: 1%;
+        padding-right: 1%;
+      }
+      /* Extra Small devices*/
+      @media (max-width: 499px) {
+        #bet, #payout {
+          font-size:20vw;
+          line-height: 0.8;
+        }
+      }
+      /* Small devices*/
+      @media (min-width: 500px) {
+        #bet, #payout {
+          font-size:25vw;
+          line-height: 0.8;
+        }
+      }
+      /* Small devices*/
+      @media (min-width: 576px) {
+        #bet, #payout {
+          font-size:15vw;
+          line-height: 0.8;
+        }
+      }
+      /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+      @media (min-width: 768px) {
+        #bet, #payout {
+          font-size:8vw;
+          line-height: 0.8;
+        }
+      }
+      /* Large devices (desktops, 992px and up) */
+      @media (min-width: 992px) {
+          #bet, #payout {
+            font-size:8vw;
+            line-height: 0.8;
+          }
+      }
+      /* Extra large devices (large desktops, 1200px and up) */
+      @media (min-width: 1200px) {
+          #bet, #payout {
+            font-size:6vw;
+            line-height: 0.8;
+          }
+      }
+      #chiptray {
+        margin: 3% 1%;
+      }
+      #pink {
+        opacity: 0.5;
+      }
+      #-chiptray {
+        margin: 4% 1%;
+        opacity: 0.45;
+      }
+      #actionbuttons {
+        margin: 3% 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
 
- <link rel="stylesheet"
-     href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+      <div class="row">
+        <div class="col-md-6">
+        <div class="jumbotron" id="bet"><h1>Betval
+        </h1></div></div>
+        <div class="col-md-6">
+        <div class="jumbotron" id="payout"><h1>Payval
+        </h1></div></div>
+      </div><!--end of row class-->
 
- <script
-   src="https://code.jquery.com/jquery-3.2.1.js"
-   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-   crossorigin="anonymous"></script>
+      <!--<div class="row" id="feedbacktellme">
+        <div class="col-1 col-md-3 col-lg-4"></div>
+        <div id="feedbacktellmetext" class="col-10 col-md-6 col-lg-4 bg-warning text-dark">.bg-warning
+        </div>
+        <div class="col-1 col-md-3 col-lg-4"></div>
+      </div><!--end of row class-->
 
- <script
-   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-   crossorigin="anonymous"></script>
+      <div class="alert alert-warning" role="alert" id="feedbacktellme">
+        A simple danger alert—check it out!
+      </div>
 
- <style>
-.button {
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 9px #999;
-  touch-action: manipulation;
-}
+      <!--<div class="row" id="feedbackfail">
+        <div class="col-1 col-md-3 col-lg-4"></div>
+        <div class="col-10 col-md-6 col-lg-4 bg-danger text-white">Try Again
+        </div>
+        <div class="col-1 col-md-3 col-lg-4"></div>
+      </div><!--end of row class-->
 
-.button:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-  
- #bet {
-  font-size:25vw;
-  line-height: 1.0;
-}
+      <div class="alert alert-danger" role="alert" id="feedbackfail">
+        Try again...
+      </div>
 
-#payout {
-  font-size:20vw;
-  line-height: 1.0;
-}
+      <!--<div class="row" id="feedbacksuccess">
+        <div class="col-1 col-md-3 col-lg-4"></div>
+        <div class="col-10 col-md-6 col-lg-4 bg-success text-white">CORRECT!
+        </div>
+        <div class="col-1 col-md-3 col-lg-4"></div>
+      </div><!--end of row class-->
 
-#bag {background-color: #4CAF50;}
-#bag:active {background-color: #3e8e41}
-#bag:hover {background-color: #3e8e41}
+      <div class="alert alert-success" role="alert" id="feedbacksuccess">
+        CORRECT!
+      </div>
 
-#pink {background-color: #ffb3d9;}
-#pink:active {background-color: #ff3399}
-#pink:hover {background-color: #ff3399}
+      <div class="row" id="chiptray">
+          <div class="col-2"><button id="bag" type="button" class="btn btn-success btn-block">£1k</button></div>
+          <div class="col-2"><button id="pink" type="button" class="btn btn-danger btn-block">£100</button></div>
+          <div class="col-2"><button id="black" type="button" class="btn btn-dark btn-block">£25</button></div>
+          <div class="col-2"><button id="lady" type="button" class="btn btn-danger btn-block">£5</button></div>
+          <div class="col-2"><button id="single" type="button" class="btn btn-primary btn-block">£1</button></div>
+          <div class="col-2"><button id="grey" type="button" class="btn btn-secondary btn-block">25p</button></div>
+      </div><!--end of row class-->
 
-#black {background-color: #262626;}
-#black:active {background-color: #0d0d0d}
-#black:hover {background-color: #0d0d0d}
+      <div class="row" id="-chiptray">
+          <div class="col-2"><button id="-bag" type="button" class="btn btn-success btn-block">£1k</button></div>
+          <div class="col-2"><button id="-pink" type="button" class="btn btn-danger btn-block">£100</button></div>
+          <div class="col-2"><button id="-black" type="button" class="btn btn-dark btn-block">£25</button></div>
+          <div class="col-2"><button id="-lady" type="button" class="btn btn-danger btn-block">£5</button></div>
+          <div class="col-2"><button id="-single" type="button" class="btn btn-primary btn-block">£1</button></div>
+          <div class="col-2"><button id="-grey" type="button" class="btn btn-secondary btn-block">25p</button></div>
+      </div><!--end of row class-->
 
-#lady {background-color: #df2020;}
-#lady:active {background-color: #cc0000}
-#lady:hover {background-color: #cc0000}
+      <div class="row" id="actionbuttons">
+          <div class="col-4"><button id="checkpleasebutton" type="button" class="btn btn-info btn-block">Check Please</button></div>
+          <div class="col-4"><button id="tellmebutton" type="button" class="btn btn-info btn-block">OK tell me</button></div>
+          <div class="col-4"><button id="resetbutton" type="button" class="btn btn-info btn-block">Reset</button></div>
+      </div><!--end of row class-->
 
-#single {background-color: #0033cc;}
-#single:active {background-color: #002699}
-#single:hover {background-color: #002699}
+      <div class="row">
+      </div><!--end of row class-->
+    </div><!--end of container class-->
 
-#grey {background-color: #bfbfbf;}
-#grey:active {background-color: #808080}
-#grey:hover {background-color: #808080}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-#-bag {background-color: #4CAF50;}
-#-bag:active {background-color: #3e8e41}
-#-bag:hover {background-color: #3e8e41}
+    <script>
 
-#-pink {background-color: #ffb3d9;}
-#-pink:active {background-color: #ff3399}
-#-pink:hover {background-color: #ff3399}
+    // http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
+    $(document).ready(function(){
+      window.console && console.log('Document ready called');
+      var bet = 0;
+      var correctpayout = 0;
 
-#-black {background-color: #262626;}
-#-black:active {background-color: #0d0d0d}
-#-black:hover {background-color: #0d0d0d}
+      function hidefeedbackareas() {
+        $('#feedbacktellme').css("display", "none");
+        $('#feedbackfail').css("display", "none");
+        $('#feedbacksuccess').css("display", "none");
+      }
 
-#-lady {background-color: #df2020;}
-#-lady:active {background-color: #cc0000}
-#-lady:hover {background-color: #cc0000}
+      function setBet(){
+        bet = ((Math.floor(Math.random() * 1000)+1)*5);
+        correctpayout = bet*19/20;
+        $('#bet').html(bet);
+        $('#payout').html(0);
+        hidefeedbackareas();
+      }
 
-#-single {background-color: #0033cc;}
-#-single:active {background-color: #002699}
-#-single:hover {background-color: #002699}
+      setBet();
 
-#-grey {background-color: #bfbfbf;}
-#-grey:active {background-color: #808080}
-#-grey:hover {background-color: #808080}
+      $('#bag').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue + 1000 );
+      });
 
-</style>
- </head>
- <body>
- <div class="container">
- <h1>Punto Banco 19:20 Payouts Game</h1>
- <h3>Bet:</h3>
- <div id="bet">Bet Goes Here</div>
- <h3>Payout:</h3>
- <div id="payout">Payout Goes Here</div>
- <br>
- <div id="feedback">Feedback Goes Here</div>
- <br>
+      $('#pink').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue + 100 );
+      });
 
-   <form id="chiptray" method="post">
-   <button id="bag" class="button">+ £1,000</button>
-   <button id="pink" class="button">+ £100</button>
-   <button id="black" class="button">+ £25</button>
-   <button id="lady" class="button">+ £5</button>
-   <button id="single" class="button">+ £1</button>
-   <button id="grey" class="button">+ 25p</button>
-   </form>
-   <br><br>
-   <form id="-chiptray" method="post">
-   <button id="-bag" class="button">- £1,000</button>
-   <button id="-pink" class="button">- £100</button>
-   <button id="-black" class="button">- £25</button>
-   <button id="-lady" class="button">- £5</button>
-   <button id="-single" class="button">- £1</button>
-   <button id="-grey" class="button">- 25p</button>
-   </form>
-   <br><br>
-   <input type="submit" value="Check Please!" id="checkplease"><br><br>
-   <input type="submit" value="OK just tell me" id="tell"><br><br>
-   <input type="submit" value="Reset" id="reset">
- </div>
- <script>
+      $('#black').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue + 25 );
+      });
 
- // http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
- $(document).ready(function(){
-   window.console && console.log('Document ready called');
-   var bet = 0;
-   var correctpayout = 0;
+      $('#lady').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue + 5 );
+      });
 
-   function setBet(){
-     bet = ((Math.floor(Math.random() * 1000)+1)*5);
-     correctpayout = bet*19/20;
-     $('#bet').html(bet);
-     $('#payout').html(0);
-     $('#feedback').html("");
-   }
+      $('#single').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue + 1 );
+      });
 
-   setBet();
+      $('#grey').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue + 0.25 );
+      });
 
-   $('#bag').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue + 1000 );
-   });
+      $('#-bag').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue - 1000 );
+      });
 
-   $('#pink').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue + 100 );
-   });
+      $('#-pink').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue - 100 );
+      });
 
-   $('#black').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue + 25 );
-   });
+      $('#-black').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue - 25 );
+      });
 
-   $('#lady').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue + 5 );
-   });
+      $('#-lady').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue - 5 );
+      });
 
-   $('#single').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue + 1 );
-   });
+      $('#-single').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue - 1 );
+      });
 
-   $('#grey').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue + 0.25 );
-   });
+      $('#-grey').click(function(event){
+          event.preventDefault();
+          var payoutvalue = parseFloat($('#payout').html());
+          $('#payout').html( payoutvalue - 0.25 );
+      });
 
-   $('#-bag').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue - 1000 );
-   });
+      $('#checkpleasebutton').click(function(event){
+          event.preventDefault();
+          hidefeedbackareas();
+          //alert('correct payout: '+correctpayout+' - type: '+typeof(correctpayout));
+          var attempt = parseFloat($('#payout').html());
+          //alert('attempt: '+attempt+' - type: '+typeof(attempt))
+          var reply = "";
+          if ( attempt == correctpayout ) {
+            $('#feedbacksuccess').css("display", "block");
+          }
+          if ( attempt != correctpayout ) {
+            $('#feedbackfail').css("display", "block");
+          }
+      });
 
-   $('#-pink').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue - 100 );
-   });
+      $('#tellmebutton').click(function(event){
+          event.preventDefault();
+          hidefeedbackareas();
+          var tellme = "Correct payout is "+correctpayout;
+          $('#feedbacktellme').css("display", "block");
+          $('#feedbacktellme').html(tellme);
+      });
 
-   $('#-black').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue - 25 );
-   });
+         $('#resetbutton').click(function(event){
+          event.preventDefault();
+          setBet();
+      });
 
-   $('#-lady').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue - 5 );
-   });
+    });
+    </script>
 
-   $('#-single').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue - 1 );
-   });
-
-   $('#-grey').click(function(event){
-       event.preventDefault();
-       var payoutvalue = parseFloat($('#payout').html());
-       $('#payout').html( payoutvalue - 0.25 );
-   });
-
-   $('#checkplease').click(function(event){
-       event.preventDefault();
-       //alert('correct payout: '+correctpayout+' - type: '+typeof(correctpayout));
-       var attempt = parseFloat($('#payout').html());
-       //alert('attempt: '+attempt+' - type: '+typeof(attempt))
-       var reply = "";
-       if ( attempt == correctpayout ) {
-         reply = "CORRECT";
-       }
-       if ( attempt != correctpayout ) {
-         reply = "Try again";
-       }
-       $('#feedback').html(reply);
-   });
-
-   $('#tell').click(function(event){
-       event.preventDefault();
-       var tellme = "Correct payout is "+correctpayout;
-       $('#feedback').html(tellme);
-   });
-
-      $('#reset').click(function(event){
-       event.preventDefault();
-       setBet();
-   });
-
- });
- </script>
- </body>
+  </body>
+</html>
