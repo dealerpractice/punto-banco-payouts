@@ -14,7 +14,7 @@
       body {
         background-color: #f2e6d9;
       }
-      .display-1 {
+      .display-1, .display-3 {
         color: #392613;
         font-variant: small-caps;
       }
@@ -41,12 +41,24 @@
           font-size:20vw;
           line-height: 0.8;
         }
+        .display-1 {
+          display: none;
+        }
+        .display-3 {
+          display:block;
+        }
       }
       /* Small devices*/
       @media (min-width: 500px) {
         #bet, #payout {
           font-size:25vw;
           line-height: 0.8;
+        }
+        .display-1 {
+          display: block;
+        }
+        .display-3 {
+          display:none;
         }
       }
       /* Small devices*/
@@ -98,10 +110,12 @@
       <div class="row">
         <div class="col-md-6">
           <h1 class="display-1">Bet:</h1>
+          <h1 class="display-3">Bet:</h1>
         <div class="jumbotron" id="bet"><h1>Betval
         </h1></div></div>
         <div class="col-md-6">
           <h1 class="display-1">Payout:</h1>
+          <h1 class="display-3">Payout:</h1>
         <div class="jumbotron" id="payout"><h1>Payval
         </h1></div></div>
       </div><!--end of row class-->
