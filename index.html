@@ -14,10 +14,11 @@
       body {
         background-color: #f2e6d9;
       }
-      .display-1, .display-3 {
+      .display-1, .display-3, .display-4 {
         color: #392613;
         font-variant: small-caps;
         margin-bottom: 0px;
+        margin-top: 0px;
       }
       .jumbotron {
         margin: 0% 1% 1% 1%;
@@ -46,6 +47,9 @@
           display: none;
         }
         .display-3 {
+          display:none;
+        }
+        .display-4 {
           display:block;
         }
       }
@@ -56,10 +60,13 @@
           line-height: 0.8;
         }
         .display-1 {
-          display: block;
+          display: none;
         }
         .display-3 {
-          display:none;
+          display:block;
+        }
+        .display-4 {
+          display: none;
         }
       }
       /* Small devices*/
@@ -67,6 +74,15 @@
         #bet, #payout {
           font-size:15vw;
           line-height: 0.8;
+        }
+        .display-1 {
+          display: block;
+        }
+        .display-3 {
+          display:none;
+        }
+        .display-4 {
+          display: none;
         }
       }
       /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -103,6 +119,10 @@
       #actionbuttons {
         margin: 3% 1%;
       }
+      #tryAgain {
+        position: relative;
+        bottom: 7px;
+      }
     </style>
   </head>
   <body>
@@ -112,43 +132,25 @@
         <div class="col-md-6">
           <h1 class="display-1">Bet:</h1>
           <h1 class="display-3">Bet:</h1>
+          <h1 class="display-4">Bet:</h1>
         <div class="jumbotron" id="bet"><h1>Betval
         </h1></div></div>
         <div class="col-md-6">
           <h1 class="display-1">Payout:</h1>
           <h1 class="display-3">Payout:</h1>
+          <h1 class="display-4">Payout:</h1>
         <div class="jumbotron" id="payout"><h1>Payval
         </h1></div></div>
       </div><!--end of row class-->
 
-      <!--<div class="row" id="feedbacktellme">
-        <div class="col-1 col-md-3 col-lg-4"></div>
-        <div id="feedbacktellmetext" class="col-10 col-md-6 col-lg-4 bg-warning text-dark">.bg-warning
-        </div>
-        <div class="col-1 col-md-3 col-lg-4"></div>
-      </div><!--end of row class-->
-
       <div class="alert alert-warning" role="alert" id="feedbacktellme">
-        A simple danger alert—check it out!
+        placeholder text
       </div>
-
-      <!--<div class="row" id="feedbackfail">
-        <div class="col-1 col-md-3 col-lg-4"></div>
-        <div class="col-10 col-md-6 col-lg-4 bg-danger text-white">Try Again
-        </div>
-        <div class="col-1 col-md-3 col-lg-4"></div>
-      </div><!--end of row class-->
 
       <div class="alert alert-danger" role="alert" id="feedbackfail">
-        Try again...
+        <a href="" id="tryAgain" class="btn btn-xs btn-danger float-right align-top col-4">Try Again</a>
+        <strong>Not quite...</strong>
       </div>
-
-      <!--<div class="row" id="feedbacksuccess">
-        <div class="col-1 col-md-3 col-lg-4"></div>
-        <div class="col-10 col-md-6 col-lg-4 bg-success text-white">CORRECT!
-        </div>
-        <div class="col-1 col-md-3 col-lg-4"></div>
-      </div><!--end of row class-->
 
       <div class="alert alert-success" role="alert" id="feedbacksuccess">
         CORRECT!
@@ -175,7 +177,7 @@
       <div class="row" id="actionbuttons">
           <div class="col-4"><button id="checkpleasebutton" type="button" class="btn btn-info btn-block">Check</button></div>
           <div class="col-4"><button id="tellmebutton" type="button" class="btn btn-info btn-block">OK tell me</button></div>
-          <div class="col-4"><button id="resetbutton" type="button" class="btn btn-info btn-block">Reset</button></div>
+          <div class="col-4"><button id="resetbutton" type="button" class="btn btn-info btn-block">New Bet</button></div>
       </div><!--end of row class-->
 
       <div class="row">
@@ -251,37 +253,49 @@
       $('#-bag').click(function(event){
           event.preventDefault();
           var payoutvalue = parseFloat($('#payout').html());
-          $('#payout').html( payoutvalue - 1000 );
+          if ((payoutvalue - 1000)>=0) {
+            $('#payout').html( payoutvalue - 1000 );
+          }
       });
 
       $('#-pink').click(function(event){
           event.preventDefault();
           var payoutvalue = parseFloat($('#payout').html());
-          $('#payout').html( payoutvalue - 100 );
+          if ((payoutvalue - 100)>=0) {
+            $('#payout').html( payoutvalue - 100 );
+          }
       });
 
       $('#-black').click(function(event){
           event.preventDefault();
           var payoutvalue = parseFloat($('#payout').html());
-          $('#payout').html( payoutvalue - 25 );
+          if ((payoutvalue - 25)>=0) {
+            $('#payout').html( payoutvalue - 25 );
+          }
       });
 
       $('#-lady').click(function(event){
           event.preventDefault();
           var payoutvalue = parseFloat($('#payout').html());
-          $('#payout').html( payoutvalue - 5 );
+          if ((payoutvalue - 5)>=0) {
+            $('#payout').html( payoutvalue - 5 );
+          }
       });
 
       $('#-single').click(function(event){
           event.preventDefault();
           var payoutvalue = parseFloat($('#payout').html());
-          $('#payout').html( payoutvalue - 1 );
+          if ((payoutvalue - 1)>=0) {
+            $('#payout').html( payoutvalue - 1 );
+          }
       });
 
       $('#-grey').click(function(event){
           event.preventDefault();
           var payoutvalue = parseFloat($('#payout').html());
-          $('#payout').html( payoutvalue - 0.25 );
+          if ((payoutvalue - 0.25)>=0) {
+            $('#payout').html( payoutvalue - 0.25 );
+          }
       });
 
       $('#checkpleasebutton').click(function(event){
@@ -307,9 +321,15 @@
           $('#feedbacktellme').html(tellme);
       });
 
-         $('#resetbutton').click(function(event){
+      $('#resetbutton').click(function(event){
           event.preventDefault();
           setBet();
+      });
+
+      $('#tryAgain').click(function(event){
+          event.preventDefault();
+          $('#payout').html(0);
+          hidefeedbackareas();
       });
 
     });
