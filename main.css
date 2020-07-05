@@ -1,0 +1,105 @@
+body {
+  background-color: #f2e6d9;
+}
+.display-1, .display-3, .display-4 {
+  color: #392613;
+  font-variant: small-caps;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.jumbotron {
+  margin: 0% 1% 1% 1%;
+  border-style: solid;
+  border-color: #734d26;
+  color: #392613;
+}
+#feedbacktellme, #feedbackfail, #feedbacksuccess {
+  margin: 2%;
+}
+.col-2, .col-4 {
+  padding-left: 1%;
+  padding-right: 1%;
+}
+/* Extra Small devices*/
+@media (max-width: 499px) {
+  #bet, #payout {
+    font-size:20vw;
+    line-height: 0.6;
+  }
+  .display-1 {
+    display: none;
+  }
+  .display-3 {
+    display:none;
+  }
+  .display-4 {
+    display:block;
+  }
+}
+/* Small devices*/
+@media (min-width: 500px) {
+  #bet, #payout {
+    font-size:25vw;
+    line-height: 0.8;
+  }
+  .display-1 {
+    display: none;
+  }
+  .display-3 {
+    display:block;
+  }
+  .display-4 {
+    display: none;
+  }
+}
+/* Small devices*/
+@media (min-width: 576px) {
+  #bet, #payout {
+    font-size:15vw;
+    line-height: 0.8;
+  }
+  .display-1 {
+    display: block;
+  }
+  .display-3 {
+    display:none;
+  }
+  .display-4 {
+    display: none;
+  }
+}
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #bet, #payout {
+    font-size:8vw;
+    line-height: 0.8;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #bet, #payout {
+      font-size:8vw;
+      line-height: 0.8;
+    }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    #bet, #payout {
+      font-size:6vw;
+      line-height: 0.8;
+    }
+}
+#chiptray, #actionbuttons {
+  margin: 3% 1%;
+}
+#pink {
+  opacity: 0.5;
+}
+#-chiptray {
+  margin: 4% 1%;
+  opacity: 0.45;
+}
+#tryAgain {
+  position: relative;
+  bottom: 7px;
+}
